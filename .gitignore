@@ -27,7 +27,6 @@ build/
 *.bin
 
 # Large dataset files (exceed GitHub 100MB limit)
-*.parquet
 *.xlsx
 Dataset/XML Dataset/xml_raw/
 Dataset/XML Dataset/bgg_clean_lemmatized.csv
