@@ -1,0 +1,51 @@
+# Python virtual environments
+venv/
+venv_phase2/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Model checkpoints (large binary files)
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.bin
+
+# Large dataset files (exceed GitHub 100MB limit)
+*.parquet
+*.xlsx
+Dataset/XML Dataset/xml_raw/
+Dataset/XML Dataset/bgg_clean_lemmatized.csv
+Dataset/XML Dataset/bgg_metadata_final.json
+Notebooks Tese/Dataset/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*

@@ -1,0 +1,42 @@
+📘 Resumo do Digital Ludeme Project (DLP)
+🎯 Objetivo Geral
+O DLP é um projeto europeu (ERC) com duração de 5 anos, sediado na Universidade de Maastricht, que tem como missão estudar jogos tradicionais de estratégia de todo o mundo ao longo da história humana, utilizando métodos computacionais e inteligência artificial para compreender melhor o seu papel na cultura.
+
+🧩 Conceito Central: Ludemes
+Um "ludeme" é definido como uma unidade de informação relacionada com jogos (ex: tipos de movimento, condições de vitória).
+
+Os jogos são modelados como conjuntos estruturados de ludemes, formando uma linguagem formal que pode ser interpretada por computador.
+
+Esta estrutura permite modelar, jogar, comparar e reconstruir jogos históricos num só sistema.
+
+🛠️ Resultados Esperados
+Uma base de dados jogável e unificada de jogos tradicionais de estratégia.
+
+Reconstrução automática e avaliação de jogos antigos com base em dados parciais.
+
+Criação de uma nova área de estudo: Arqueoludemologia Digital (Digital Archaeoludology).
+
+Objetivo: restaurar e preservar o património cultural intangível do jogo.
+
+📈 Metas Específicas
+Modelar a totalidade dos jogos tradicionais de estratégia num só sistema.
+
+Inferir regras ou lógicas ausentes em jogos antigos com base em evidências parciais.
+
+Mapear a difusão cultural dos jogos e das ideias lúdicas ao longo da história.
+
+🧠 Implicações Científicas e Técnicas
+Permite análises matemáticas e estatísticas sobre jogos e suas relações.
+
+Cria ferramentas para avaliação automática da autenticidade histórica de reconstruções.
+
+Fornece uma base para estudos interdisciplinares, unindo história, IA, ciência dos jogos e linguística formal. 
+
+
+
+| Elemento do Projeto                   | Ligação com a Tua Tese                                                       |
+| ------------------------------------- | ---------------------------------------------------------------------------- |
+| Ludemes como unidades formais         | Corresponde à representação lógica das estratégias que queres traduzir.      |
+| Estrutura modular e sintática         | Facilita parsing e transformação em linguagem natural.                       |
+| Modelação computacional de jogos      | Fornece dados reais e consistentes para treino/teste de modelos de tradução. |
+| Exploração cultural e explicabilidade | Alinha-se com o teu foco em **IA explicável** e interação homem-máquina.     |

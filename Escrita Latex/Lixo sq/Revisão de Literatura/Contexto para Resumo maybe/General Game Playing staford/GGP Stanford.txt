@@ -1,0 +1,92 @@
+📘 Resumo Detalhado – “Overview of General Game Playing” (Michael Genesereth)
+🎯 1. Motivação
+Jogos de estratégia são testes naturais para inteligência: envolvem planeamento, raciocínio e tomada de decisões sob regras bem definidas.
+
+Sistemas especializados (ex: Deep Blue) não são verdadeiramente inteligentes: só sabem jogar o jogo para o qual foram programados.
+
+O desafio real de IA é construir sistemas que possam aprender a jogar qualquer jogo desconhecido — nasce assim o conceito de General Game Playing (GGP).
+
+🧠 2. O que é General Game Playing?
+GGP é a capacidade de:
+
+Receber uma descrição de regras em tempo de execução;
+
+Jogar bem com base apenas nessa descrição — sem programação específica.
+
+Um GGP deve lidar com:
+
+Jogos com informação total ou parcial;
+
+Um ou mais jogadores;
+
+Jogadas simultâneas ou alternadas;
+
+Jogos determinísticos ou estocásticos.
+
+🔧 3. Representação dos Jogos
+Jogos são modelados como grafos de estados:
+
+Cada estado contém o estado do mundo (posição, peças, turno, etc.);
+
+Transições representam os efeitos das ações conjuntas dos jogadores.
+
+Em alternativa a árvores de jogo (forma tradicional da teoria dos jogos), os autores usam representações baseadas em estados, mais compactas e eficientes.
+
+💡 4. Game Description Language (GDL)
+GDL é uma linguagem declarativa baseada em lógica para descrever jogos:
+
+Define funções como init, legal, next, goal, terminal.
+
+Usa lógica de primeira ordem com variáveis, predicados e quantificadores.
+
+Exemplo: regras do Tic-Tac-Toe são expressas através de fatos lógicos e regras de inferência (ex: jogadas válidas, atualização de estado, condições de vitória).
+
+🎮 5. Gestão do Jogo (Game Management)
+Um Game Manager gere o jogo:
+
+Envia regras e papéis aos jogadores.
+
+Garante tempos-limite (start/play clock).
+
+Aplica as jogadas, calcula novos estados e avalia se o jogo terminou.
+
+Suporta lógica de tempo real e competição entre múltiplos agentes.
+
+🧩 6. Desafios de Jogar Bem
+Raciocínio automático é essencial para entender e manipular as regras.
+
+Jogadores precisam:
+
+De planeamento (forward/backward);
+
+De raciocínio condicional e probabilístico em jogos sem soluções garantidas;
+
+De lidar com limites de tempo e estados enormes (ex: xadrez tem >10³⁰ estados).
+
+Avaliação heurística é difícil porque os jogos são desconhecidos à partida — o próprio jogador deve gerar funções de avaliação.
+
+🧱 7. Alternativas e Abordagens
+Estratégias incluem:
+
+Interpretação direta das regras;
+
+Tradução das regras para outra representação mais eficiente;
+
+Geração automática de programas especializados para o jogo dado.
+
+Abstração de estados pode ajudar a simplificar a complexidade.
+
+🧠 8. Significado Filosófico e Histórico
+GGP é visto como a materialização moderna da ideia de John McCarthy (Advice Taker): sistemas programáveis por descrição, não por código.
+
+A aspiração é construir sistemas gerais de inteligência artificial — capazes de agir bem em qualquer contexto.
+
+
+
+| Conceito do Artigo                                              | Relevância para a Tese                                                                |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| GDL como representação formal de jogos                          | Podes usar expressões em GDL como base lógica a traduzir para linguagem natural       |
+| Separação clara de componentes lógicos (`init`, `next`, `goal`) | Permite isolar partes da jogada a explicar, facilitando a geração textual segmentada  |
+| Grafos de estados como modelo unificador                        | Inspira técnicas de mapeamento semântico (do estado → explicação textual da jogada)   |
+| Limitações de raciocínio e planeamento                          | Justifica o uso de LLMs para gerar descrições compreensíveis e explicações plausíveis |
+| Game Manager + ciclos de jogada                                 | Permite analisar a jogada no seu contexto e gerar explicações dinâmicas (por turno)   |

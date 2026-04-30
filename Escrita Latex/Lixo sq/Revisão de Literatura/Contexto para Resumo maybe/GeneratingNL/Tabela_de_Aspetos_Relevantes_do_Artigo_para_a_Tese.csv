@@ -1,0 +1,8 @@
+Aspeto do Artigo,Relevância para a Tese
+Problema central: tradução de lógica para linguagem natural,Coincide diretamente com o objetivo principal da tese.
+Limitações de seq2seq e LLMs generalistas,Justifica a análise crítica da fiabilidade dos LLMs em traduzir estratégias de jogos.
+Pipeline SLEtoNL com estrutura (árvore/grafo),Inspira possível abordagem híbrida para traduzir estratégias em GDL para linguagem natural.
+Criação de dataset paralelo (lógica ↔ linguagem),"Serve de modelo para criar e testar pares (estratégia, descrição) no teu domínio."
+Resultados: modelos estruturais superam LLMs,Valida a aposta em estruturar as jogadas antes da tradução.
+Dependência de parsing lógico fiável,Alerta para a necessidade de parsing robusto para linguagens como GDL ou Ludii.
+Justificação do uso de lógica formal vs. AMR,Confirma que lógica formal é mais adequada para representar raciocínio estratégico em jogos.
