@@ -1,8 +1,8 @@
 # Python virtual environments
-venv/
-venv_phase2/
+venv*/
 .venv/
 env/
+env*/
 
 # Python cache
 __pycache__/
