@@ -1,5 +1,5 @@
-#!/bin/bash
-# Phase 4 MLGN — HPC Deployment Script
+﻿#!/bin/bash
+# Phase 4 MLGN â€” HPC Deployment Script
 # Usage: bash deploy_phase4.sh
 # Server: g08.hlt.inesc-id.pt | GPU: NVIDIA A100 80GB
 
@@ -11,7 +11,7 @@ SCRIPT="$PHASE4_DIR/Scripts/train_phase4_mlgn.py"
 LOG="$PHASE4_DIR/Results/phase4_run.log"
 
 echo "========================================"
-echo "Phase 4 MLGN — Server Deployment"
+echo "Phase 4 MLGN â€” Server Deployment"
 echo "========================================"
 echo "Repo:   $REPO_DIR"
 echo "Script: $SCRIPT"
