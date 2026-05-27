@@ -36,7 +36,12 @@ Notebooks Tese/
 # Logs (allow experiment results in Results/)
 *.log
 !Results/*.log
+!*/Results/*.log
 logs/
+
+# Phase 4 MLGN large numpy arrays (test predictions saved for McNemar)
+# Keep .npy files committed so McNemar test can be run locally
+# Models/best_mlgn_categories.pt is excluded by *.pt rule above
 
 # OS files
 .DS_Store
