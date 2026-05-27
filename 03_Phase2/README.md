@@ -138,7 +138,7 @@ The modest improvement (+0.65%) is consistent with expectations for a task where
 
 ### 1. Comprehensive Experiment Comparison
 
-![Phase 2 comprehensive comparison](Results/phase2_comprehensive_comparison.png)
+<img src="Results/phase2_comprehensive_comparison.png" alt="Phase 2 comprehensive comparison" width="800">
 
 All 9 experiments plotted side by side. The ensemble bar (rightmost) is the only one above the dashed Phase 1 baseline. Extended training is visibly the worst result.
 
@@ -146,7 +146,7 @@ All 9 experiments plotted side by side. The ensemble bar (rightmost) is the only
 
 ### 2. Confusion Matrix — Ensemble Best Model (Seed 5)
 
-![Confusion matrix best ensemble](Results/confusion_matrix_best_5.png)
+<img src="Results/confusion_matrix_best_5.png" alt="Confusion matrix best ensemble" width="800">
 
 Per-class breakdown of predictions. Key observations:
 - Frequent classes (War, Family, Strategy) achieve high recall.
@@ -157,7 +157,7 @@ Per-class breakdown of predictions. Key observations:
 
 ### 3. Bootstrap Confidence Intervals (Statistical Validation)
 
-![Bootstrap confidence intervals](Results/bootstrap_confidence_intervals.png)
+<img src="Results/bootstrap_confidence_intervals.png" alt="Bootstrap confidence intervals" width="800">
 
 1,000-iteration bootstrap resampling of the test set. The ensemble CI is fully above the Phase 1 baseline line, confirming the +0.65% gain is not a lucky artefact of a single random split. McNemar test was also run (EXP 9) to confirm statistical significance (p < 0.05).
 

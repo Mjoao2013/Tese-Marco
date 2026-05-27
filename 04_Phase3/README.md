@@ -197,7 +197,8 @@ The enhanced run shows a fundamentally different pattern from Iteration 2: train
 
 Early stopping on val loss correctly identifies epoch 13 as best (val loss = 0.5171).
 
-![Phase 3 Enhanced — Training Curves](Results/Images/phase3_training_curves.png)
+<img src="Results/Images/phase3_training_curves.png" alt="Phase 3 Enhanced — Training Curves" width="800">
+
 *Left: BCE loss for train and val converge (no divergence). Right: Val Micro-F1 and Macro-F1 over 15 epochs, with final test scores shown as dotted lines.*
 
 ### Per-label highlights
@@ -219,7 +220,8 @@ Early stopping on val loss correctly identifies epoch 13 as best (val loss = 0.5
 | Third-party Expansion | 0.1111 | 8 |
 | Game System | 0.0978 | 46 |
 
-![Phase 3 Enhanced — Top & Bottom Labels](Results/Images/phase3_top_bottom_labels.png)
+<img src="Results/Images/phase3_top_bottom_labels.png" alt="Phase 3 Enhanced — Top & Bottom Labels" width="800">
+
 *Per-label F1 for the 20 best (green) and 20 worst (red/orange) categories. Support counts shown inline. War-period labels dominate the top; semantically vague and ultra-rare labels dominate the bottom.*
 
 ### RQ3 — Text characteristics vs performance
@@ -231,7 +233,8 @@ Spearman correlation between support (training examples) and per-label F1:
 
 Statistically significant but weak — support explains ~7% of variance in per-label F1. The remaining 93% is determined by **lexical distinctiveness**: war-period categories (American Civil War, Napoleonic) achieve F1 > 0.85 with modest support because their vocabulary is unmistakable. Semantically vague categories ("Number", "Game System") fail despite moderate support because their signal overlaps with many other categories.
 
-![Phase 3 Enhanced — Per-Label F1 vs Support](Results/Images/phase3_per_label_scatter.png)
+<img src="Results/Images/phase3_per_label_scatter.png" alt="Phase 3 Enhanced — Per-Label F1 vs Support" width="800">
+
 *Scatter plot (log-scale x-axis): each dot is one of the 85 categories. Colour encodes F1 (red → green). The weak upward trend confirms the Spearman r = 0.265: support helps, but vocabulary distinctiveness matters more.*
 
 ---
@@ -247,10 +250,12 @@ Statistically significant but weak — support explains ~7% of variance in per-l
 
 **Critical insight:** The DistilBERT baseline (0.6781 Micro-F1) remains the Micro-F1 leader. The Enhanced model only recovers to 0.6739 — 0.42pp below the baseline. However, the Enhanced model is strictly better on Macro-F1 (+2.86pp) and has 6 more labels above F1=0.5. This matters for thesis purposes: Micro-F1 is dominated by frequent labels, while Macro-F1 reflects the full label space quality.
 
-![Phase 3 — Model Comparison](Results/Images/phase3_model_comparison.png)
+<img src="Results/Images/phase3_model_comparison.png" alt="Phase 3 — Model Comparison" width="800">
+
 *Four-panel comparison across all metrics. Each bar is a model; Hamming loss (lower is better) shows the Optimized run's calibration failure clearly.*
 
-![Phase 3 — Per-Label F1 Distribution](Results/Images/phase3_f1_histogram.png)
+<img src="Results/Images/phase3_f1_histogram.png" alt="Phase 3 — Per-Label F1 Distribution" width="800">
+
 *Histogram of per-label F1 scores across all 85 categories. The Enhanced model (green) shifts the distribution rightward vs the DistilBERT baseline (blue), with more labels concentrated in the 0.6–0.8 range.*
 
 ---

@@ -76,15 +76,15 @@ Not all games have all three labels — geek_type in particular is missing for ~
 
 ### Geek Type — Top 10 labels by frequency
 
-![Geek Type label frequency](Images/label_freq_geek_type.png)
+<img src="Images/label_freq_geek_type.png" alt="Geek Type label frequency" width="800">
 
 ### Categories — Top 20 labels by frequency
 
-![Category label frequency](Images/label_freq_categories.png)
+<img src="Images/label_freq_categories.png" alt="Category label frequency" width="800">
 
 ### Mechanisms — Top 20 labels by frequency
 
-![Mechanism label frequency](Images/label_freq_mechanisms.png)
+<img src="Images/label_freq_mechanisms.png" alt="Mechanism label frequency" width="800">
 
 ---
 
@@ -110,21 +110,21 @@ Games within specific categories or using specific mechanisms tend to have syste
 
 ### Description length vs. number of mechanisms
 
-![Description length vs number of mechanisms](Images/desc_length_vs_mechanisms.png)
+<img src="Images/desc_length_vs_mechanisms.png" alt="Description length vs number of mechanisms" width="800">
 
 Positive correlation (r = 0.18) — games with more mechanisms have longer descriptions, likely because complex games require more explanation.
 
 ### Description length by Geek Type
 
-![Description length by Geek Type label](Images/desc_length_by_geek_type.png)
+<img src="Images/desc_length_by_geek_type.png" alt="Description length by Geek Type label" width="800">
 
 ### Description length by Category
 
-![Description length by Category label](Images/desc_length_by_category.png)
+<img src="Images/desc_length_by_category.png" alt="Description length by Category label" width="800">
 
 ### Description length by Mechanism
 
-![Description length by Mechanism label](Images/desc_length_by_mechanism.png)
+<img src="Images/desc_length_by_mechanism.png" alt="Description length by Mechanism label" width="800">
 
 ---
 
@@ -152,11 +152,11 @@ Within mechanisms, consistent with Martoglia & Pontiroli (2021):
 
 ### Category co-occurrence heatmap
 
-![Category co-occurrence heatmap](Images/cooccurrence_categories.png)
+<img src="Images/cooccurrence_categories.png" alt="Category co-occurrence heatmap" width="800">
 
 ### Mechanism co-occurrence heatmap
 
-![Mechanism co-occurrence heatmap](Images/cooccurrence_mechanisms.png)
+<img src="Images/cooccurrence_mechanisms.png" alt="Mechanism co-occurrence heatmap" width="800">
 
 ---
 
