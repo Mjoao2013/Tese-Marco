@@ -6,6 +6,7 @@
 - [XML.ipynb — Raw Parsing](#xmlipynb--raw-parsing)
 - [XMLDataset.ipynb — Cleaning & Feature Engineering](#xmldatasetipynb--cleaning--feature-engineering)
 - [Data Quality Notes](#data-quality-notes)
+- [Glossary](#glossary)
 
 ---
 
@@ -113,3 +114,41 @@ Geek type is treated as single-label because >99% of games have exactly one fami
 - **Label noise:** BGG labels are community-assigned and occasionally inconsistent (e.g., a game tagged both `War` and `Family`). No manual cleaning was performed — this is acknowledged as a limitation.
 - **Language assumption:** The pipeline assumes English. Some games have non-English descriptions that survive filtering but degrade tokenisation quality.
 - **Temporal bias:** Games published before ~2000 tend to have shorter, lower-quality descriptions written retrospectively by the community.
+
+---
+
+## Glossary
+
+**API (Application Programming Interface)** — A standardised way for programs to communicate with each other. Here, the BGG XML API v2 is the web service that returns game data as XML files when queried with a game ID.
+
+**DataFrame** — A tabular data structure (like a spreadsheet) used in Python via the `pandas` library. Rows are games, columns are fields like `name`, `description`, `categories`.
+
+**Feature engineering** — The process of creating or transforming input variables (features) to make them more useful for a machine learning model. Here: building `description_clean`, `categories_list`, etc. from raw XML fields.
+
+**HTML entities** — Special character codes used in HTML to represent symbols that would otherwise be interpreted as markup (e.g., `&amp;` = `&`, `&lt;` = `<`, `&#10;` = newline). Game descriptions from BGG are HTML-encoded and must be decoded before processing.
+
+**Label** — A category or class assigned to a data point. In this project, labels are things like `Wargame`, `Dice Rolling`, or `Strategy` — the attributes we want the model to predict.
+
+**Label noise** — Errors or inconsistencies in the ground-truth labels. In BGG, labels are community-assigned, so the same game may be tagged differently by different users, or tags may be applied inconsistently across games.
+
+**Lemmatization** — Reducing a word to its dictionary base form (lemma), taking grammar into account. Example: `rolling` → `roll`, `games` → `game`, `strategies` → `strategy`. Different from stemming, which just chops endings without linguistic knowledge.
+
+**Multi-label** — A classification setting where each data point can belong to multiple classes simultaneously. Example: a game can be both `Card Game` AND `Fantasy` AND `Fighting`.
+
+**Multi-hot encoding** — A binary vector representation for multi-label problems. A game with 85 possible labels is represented as a vector of 85 zeros and ones, where `1` means the label is present. Example: `[0, 0, 1, 0, 1, 0, ...]`.
+
+**Parquet** — A compressed, columnar binary file format for tabular data. Much faster to read than CSV and preserves data types (including Python lists). Used here to store the processed dataset efficiently.
+
+**POS tagging (Part-of-Speech tagging)** — Labelling each word in a sentence with its grammatical role (noun, verb, adjective, etc.). Used here to improve lemmatization accuracy — the word `playing` is lemmatized differently as a verb (`play`) vs. a noun (`playing`).
+
+**Single-label** — A classification setting where each data point belongs to exactly one class. Example: a game has exactly one geek type: either `War` or `Family` or `Strategy`, never both.
+
+**Stopwords** — Very common words that carry little meaning and are typically removed before text analysis: `the`, `a`, `is`, `of`, `and`, etc. After removal, the remaining words are more informative for classification.
+
+**Tokenisation** — Splitting text into individual units (tokens), usually words or sub-words. `"Dice rolling game"` → `["dice", "rolling", "game"]`.
+
+**Token** — A single unit produced by tokenisation. Can be a word, a word fragment (in sub-word tokenisers like BERT's WordPiece), or punctuation.
+
+**Type-token ratio (TTR)** — A measure of vocabulary richness = (number of unique words) / (total words). A TTR of 0.70 means 70% of words in a text are unique, indicating high lexical diversity. Higher TTR = richer vocabulary.
+
+**XML (Extensible Markup Language)** — A structured text format for storing and transporting data using nested tags. Example: `<name type="primary">Catan</name>`. BGG distributes game data as XML files.

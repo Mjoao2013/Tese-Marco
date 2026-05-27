@@ -14,6 +14,7 @@
 - [Visualisations](#visualisations)
 - [Key Takeaways](#key-takeaways)
 - [Files in This Folder](#files-in-this-folder)
+- [Glossary](#glossary)
 
 ---
 
@@ -185,3 +186,61 @@ Per-class breakdown of predictions. Key observations:
 | `Results/confusion_matrix_best_5.png` | Confusion matrix of the best ensemble model |
 | `Results/bootstrap_confidence_intervals.png` | Bootstrap CI statistical validation |
 | `Models/` | 13 trained `.pt` checkpoints — gitignored, local only |
+
+---
+
+## Glossary
+
+**Ablation study** — An experiment where you remove or disable one component at a time to measure its individual contribution. Example: “what happens if I remove class weighting?” allows you to isolate exactly how much weighting helps.
+
+**Accuracy** — (Correct predictions) / (Total predictions). Intuitive but misleading with imbalanced classes — a model that always predicts “War” gets 28.7% accuracy without learning anything.
+
+**Batch size** — Number of training examples processed together before updating the model’s weights. Larger batches = more stable gradients but more memory. Here: 32 games per batch.
+
+**Bootstrap confidence interval (Bootstrap CI)** — A statistical technique to estimate uncertainty in a metric. Randomly resample the test set with replacement 1,000 times and compute F1 on each resample. The range containing 95% of results is the 95% CI. If the lower bound of the ensemble CI is above the baseline line, the improvement is statistically real.
+
+**Class-weighted loss** — A variant of CrossEntropyLoss where rare classes receive a higher penalty when misclassified. The model is pushed to pay more attention to minority classes. The weight for class c = (total samples) / (samples in class c).
+
+**Confusion matrix** — A table showing how often each true class was predicted as each other class. Rows = true labels, columns = predicted labels. The diagonal shows correct predictions; off-diagonal entries are errors.
+
+**CosineAnnealingLR** — A learning rate scheduler that decreases LR following a cosine curve from initial value to near-zero. Gradually slows down learning, helping fine convergence.
+
+**CrossEntropyLoss** — The standard loss function for single-label classification. Penalises the model when it assigns low probability to the correct class. Mathematically: −log(p_correct_class).
+
+**Ensemble** — Combining predictions from multiple models to produce a single, more robust prediction. Reduces the impact of any one model’s random initialisation errors. Here: 5 independently trained BERT models combined via soft voting.
+
+**Epoch** — One full pass through all training data. Training for 10 epochs means the model sees every game 10 times.
+
+**F1 score** — The harmonic mean of Precision and Recall: 2 × (Precision × Recall) / (Precision + Recall). Balances both metrics. Ranges from 0 (worst) to 1 (best). Preferred over accuracy for imbalanced datasets.
+
+**False positive** — The model predicted a label/class that is NOT actually correct. Example: predicting “Family” for a War game.
+
+**False negative** — The model failed to predict a label/class that IS correct. Example: not predicting “War” for a War game.
+
+**Focal Loss** — A variant of CrossEntropy that down-weights easy examples (ones the model already predicts correctly with high confidence) and focuses training on hard/rare examples. Designed for extreme imbalance scenarios.
+
+**Grid search** — Systematically trying every combination of hyperparameter values in a predefined set. Here: testing learning rates [1e-5, 2e-5, 3e-5, 5e-5] and picking the best.
+
+**HPC (High-Performance Computing) server** — A remote computing cluster with GPUs. Here: `g08.hlt.inesc-id.pt` with NVIDIA A100 80GB. Used because training BERT locally would take 10× longer.
+
+**Imbalance ratio** — Ratio of the most to least frequent class. 11.4× for geek_type means War (4,219 games) appears 11.4× more than Customizable (499 games).
+
+**Learning rate (LR)** — The step size for weight updates. 2e-5 = 0.00002. Too high: training diverges. Too low: training converges too slowly or gets stuck.
+
+**Logits** — Raw unnormalised scores from the model’s final linear layer, before softmax/sigmoid. Can be any real number. Soft voting averages these directly across ensemble members.
+
+**McNemar test** — A statistical test for comparing two classifiers on the same test set. It checks whether the pattern of errors differs significantly. p < 0.05 means the difference is not due to chance.
+
+**Micro-F1** — F1 computed by pooling all class predictions globally. Dominated by frequent classes. The primary metric in Phase 2 because it reflects overall performance.
+
+**Overfitting** — The model memorises training examples instead of learning general patterns. Symptom: training loss decreases while validation loss increases.
+
+**Precision** — Of all examples the model predicted as class X, what fraction actually belong to class X? Precision = TP / (TP + FP).
+
+**Random seed** — A number that initialises all random processes (weight initialisation, data shuffling). Different seeds produce different trained models even with identical hyperparameters. Ensembling over multiple seeds exploits this variance.
+
+**Recall** — Of all actual examples of class X, what fraction did the model correctly identify? Recall = TP / (TP + FN).
+
+**Soft voting** — Ensemble combination method where each model’s raw logits (not just the winning class) are averaged. The final class = argmax of averaged logits. Preserves more information than hard voting (majority vote on final predictions).
+
+**Validation set (val set)** — A held-out portion of data not used for training, used to monitor model performance during training and choose hyperparameters. Separate from the test set, which is only touched once at the very end.

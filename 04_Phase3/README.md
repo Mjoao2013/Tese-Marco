@@ -11,6 +11,7 @@
 - [What Remains Unexplained (Phase 4 Motivation)](#what-remains-unexplained-phase-4-motivation)
 - [Recommended Next Step: Phase 4 — MLGN on Categories](#recommended-next-step-phase-4--mlgn-on-categories)
 - [Files in This Folder](#files-in-this-folder)
+- [Glossary](#glossary)
 
 ---
 
@@ -325,3 +326,71 @@ A negative result is still a valid thesis finding. If MLGN Micro-F1 ≤ 0.6781:
 | `Results/Optimized/` | Report, results JSON, progress log, stdout for Iteration 2 |
 | `Results/Enhanced/` | Report, results JSON, progress log, stdout for Iteration 3 |
 | `Models/` | 3 trained `.pt` checkpoints — gitignored, local only |
+
+---
+
+## Glossary
+
+**BCEWithLogitsLoss (Binary Cross-Entropy with Logits Loss)** — The loss function for multi-label classification. Applies sigmoid internally to each of the 85 outputs and computes binary cross-entropy per label independently. "WithLogits" means it accepts raw logits (numerically more stable than applying sigmoid first).
+
+**Binary Relevance (BR)** — A multi-label classification strategy that decomposes the problem into N independent binary classifiers, one per label. Each classifier answers "is label L present?" independently of all other labels. Simple but ignores label dependencies.
+
+**Calibration** — How well a model's predicted probabilities reflect true frequencies. A well-calibrated model that says 70% probability for a label should be correct ~70% of the time. Uncapped pos_weight destroyed calibration here, causing the model to output unrealistically high probabilities.
+
+**Contrastive loss** — A loss function that trains a model to make representations of similar examples close together and dissimilar examples far apart in embedding space. In MLGN, it pulls together games sharing the same label while pushing apart games with different labels.
+
+**Dropout** — A regularisation technique: randomly zeroes a fraction of neuron outputs during training. Prevents over-reliance on specific neurons, reducing overfitting. Dropout=0.3 means 30% of values are zeroed per forward pass.
+
+**Early stopping** — Halts training when a monitored metric (val loss or val F1) stops improving for N consecutive epochs. The checkpoint from the best epoch is kept. Prevents overfitting and saves compute.
+
+**False negative** — A label the model failed to predict that IS actually present. Example: failing to tag a Wargame with "Wargame".
+
+**False positive** — A label the model predicted that is NOT actually present. Example: tagging a card game as "Wargame". High false positives inflate Hamming loss.
+
+**GCN (Graph Convolutional Network)** — A neural network that operates on graphs. Each node updates its representation by aggregating information from its neighbours. In MLGN, labels are nodes; edges are co-occurrence relationships. The GCN propagates information between correlated labels.
+
+**Gradient** — The direction and magnitude of change needed to reduce the loss. During training, gradients are computed and used to update the model's weights. Uncapped weights produced extremely large gradients, destabilising training.
+
+**Hamming loss** — Fraction of label-game pairs that are incorrectly predicted (either false positive or false negative) out of all possible label-game pairs. Lower = better. Formula: (incorrect predictions) / (games × labels). A Hamming loss of 0.020 means 2% of all label predictions are wrong.
+
+**Iterative stratification** — A multi-label-aware method (from `skmultilearn`) for splitting data into train/val/test while preserving label distribution in each split. Standard `train_test_split` doesn't account for label co-occurrences and can leave rare labels absent from splits.
+
+**Label smoothing** — Instead of using hard targets (0 or 1), replace them with soft targets (e.g., 0.05 and 0.95). Prevents the model from becoming overconfident, especially on rare labels where a single positive example can push the sigmoid to nearly 1.0.
+
+**LRAP (Label Ranking Average Precision)** — Measures ranking quality: for each game, are the correct labels ranked higher than the incorrect ones? Ranges from 0 to 1. A game with labels [A, B] scores well if the model assigns A and B higher probabilities than all other labels, regardless of threshold. Threshold-independent.
+
+**Macro-F1** — Average F1 computed per label, then averaged across all labels with equal weight. Each label counts the same regardless of how frequent it is. A model that fails on rare labels will have low Macro-F1 even if Micro-F1 is high.
+
+**McNemar test** — A statistical significance test that compares two classifiers on the same test set by looking at which examples one model gets right and the other gets wrong. p < 0.05 means the difference is statistically significant, not just luck.
+
+**Micro-F1** — F1 computed by pooling all predictions globally across all labels and games. Dominated by the most frequent labels (Card Game, Wargame, etc.). Good overall measure but hides rare label failures.
+
+**MLGN (Multi-Label Guided Network)** — The thesis's target architecture (Liu et al. 2023). Extends BERT-BR by adding: (1) a label semantic guidance module using contrastive learning, and (2) a label correlation module using GCN to propagate information between related labels.
+
+**Multi-hot encoding** — A binary vector of length = number of labels. Each position is 1 if that label is present for this game, 0 otherwise. A game with 85 labels has an 85-dimensional binary vector as its target.
+
+**Multi-label classification** — Each data point can have multiple correct labels simultaneously. Requires a fundamentally different approach from single-label: instead of one softmax output, you need N independent sigmoid outputs, one per label.
+
+**Overfitting** — The model performs well on training data but poorly on unseen data. In the Optimized run, train loss dropped to 0.12 while val loss rose to 1.27 — the model memorised training examples instead of learning to generalise.
+
+**PMI (Pointwise Mutual Information)** — Measures how much more two labels co-occur than expected by chance: PMI(A,B) = log[ P(A,B) / (P(A)×P(B)) ]. Positive PMI = labels tend to co-occur; negative = they tend to avoid each other. Used to weight edges in the label co-occurrence graph.
+
+**pos_weight** — A per-label weight in BCEWithLogitsLoss that increases the penalty for missing a positive example (false negative). pos_weight = (negative examples) / (positive examples). Counteracts class imbalance by making rare label errors more costly. Must be capped to prevent gradient explosion.
+
+**Precision** — Of all the labels the model predicted as present, what fraction actually are? Precision = TP / (TP + FP).
+
+**Recall** — Of all the labels that are actually present, what fraction did the model predict? Recall = TP / (TP + FN).
+
+**Sigmoid** — A mathematical function that maps any real number to the range (0, 1). Output can be interpreted as a probability. Used for multi-label classification: each label gets its own sigmoid output between 0 and 1.
+
+**Spearman correlation** — A rank-based correlation coefficient measuring whether one variable tends to increase as another increases. Here used to test whether labels with more training examples (higher support) tend to have higher F1 scores. r=0.265 means a weak but statistically significant positive relationship.
+
+**Subset accuracy** — Fraction of games where the model predicted the exact set of labels correctly (every label right, none wrong, none missing). Very strict — even one extra or missing label counts as wrong. Baseline: 24.1%.
+
+**Support** — Number of positive training examples for a specific label. A label with support=6 has only 6 games in the training set — almost impossible to learn from.
+
+**TF-IDF (Term Frequency–Inverse Document Frequency)** — A classical text representation that converts descriptions into vectors where each dimension = a word, and the value reflects how important that word is in this document relative to the full corpus. Common words get low values; rare distinctive words get high values.
+
+**Threshold** — In multi-label classification, the sigmoid output must be compared against a threshold to decide "present" (above threshold) or "absent" (below). The threshold is tuned on the validation set. A global threshold applies the same value to all labels; per-label thresholds allow each label to have its own cutoff.
+
+**Warmup scheduler (linear warmup)** — Starts with a very small learning rate, then linearly increases it to the target LR over the first N steps. Prevents large, destabilising weight updates at the very beginning when BERT's weights are being adapted from their pre-trained values.

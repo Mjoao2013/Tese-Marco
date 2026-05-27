@@ -12,6 +12,7 @@
 - [Description Length by Label](#description-length-by-label)
 - [Label Co-occurrence Analysis](#label-co-occurrence-analysis)
 - [Key EDA Findings for Modelling](#key-eda-findings-for-modelling)
+- [Glossary](#glossary)
 
 ---
 
@@ -170,3 +171,43 @@ Within mechanisms, consistent with Martoglia & Pontiroli (2021):
 4. **Text alone has limits.** Game descriptions often use overlapping vocabulary across semantically adjacent categories (War games and Strategy games, Family games and Children's games). The moderate type-token ratio suggests the text carries genuine signal, but per-class ambiguity will create a performance ceiling.
 
 5. **Spearman r(F1, support) = 0.25–0.27** — confirmed in Phase 3 results — meaning label frequency is a statistically significant but not dominant predictor of per-label performance. Topic specificity (war games have very distinct vocabulary) matters more than raw count.
+
+---
+
+## Glossary
+
+**Co-occurrence** — Two labels co-occur when they appear together on the same game. If `Wargame` and `World War II` frequently appear on the same games, they have high co-occurrence. This is the basis for building a label correlation graph in MLGN.
+
+**Corpus** — The complete collection of text documents used in a study. Here, the corpus is all 165,708 game descriptions.
+
+**EDA (Exploratory Data Analysis)** — The process of visually and statistically examining a dataset before building models. Goal: understand distributions, spot problems (outliers, missing data, imbalance), and inform modelling decisions.
+
+**Imbalance ratio** — The ratio between the most frequent and least frequent class in a dataset. An imbalance ratio of 792 means the most common category (`Card Game`) appears 792 times more often than the rarest one. High imbalance makes rare classes very hard to learn.
+
+**Label cardinality** — The average number of labels per data point. For categories: 2.74 labels/game on average. Higher cardinality = more complex multi-label problem.
+
+**Label co-occurrence matrix** — A matrix where entry (i, j) = number of times label i and label j appear on the same game. Used to build the label correlation graph for MLGN.
+
+**Multi-label** — A classification setting where each item can have multiple correct labels simultaneously. A game can be `Card Game`, `Fantasy`, and `Fighting` all at once.
+
+**Pearson correlation** — A number between -1 and +1 measuring the linear relationship between two variables. +1 = perfect positive relationship, 0 = no relationship, -1 = perfect negative relationship.
+
+**Percentile** — A value below which a given percentage of observations fall. The 99th percentile of token length = 380 means 99% of descriptions have 380 tokens or fewer.
+
+**PMI (Pointwise Mutual Information)** — A measure of how much more (or less) two labels co-occur than expected by chance. High PMI = strong association. Used to weight edges in the label correlation graph.
+
+**Shannon entropy** — A measure of information content or uncertainty in a distribution. Higher entropy = more evenly spread across labels = less imbalanced. Maximum entropy for 8 classes = 3.0 bits; for 85 classes = 6.41 bits.
+
+**Single-label** — A classification setting where each item belongs to exactly one class (like `geek_type`: a game is War OR Family OR Strategy, not multiple).
+
+**Spearman correlation** — A rank-based correlation coefficient (-1 to +1) that measures whether one variable consistently increases as the other increases, without assuming a linear relationship. Used here to test whether labels with more training examples tend to have higher F1 scores.
+
+**Support** — The number of training examples for a given label. A label with support=34 has only 34 positive examples in the training set — very little for a model to learn from.
+
+**Token** — A single unit of text after splitting (tokenisation). Usually a word or sub-word fragment. BERT uses sub-word tokens via WordPiece, so `playing` might stay as one token, while `deckbuilding` might split into `deck` + `##building`.
+
+**Token limit (512)** — BERT can process at most 512 tokens in a single input. Descriptions longer than this are truncated (the end is cut off). Since 99% of games are under 380 tokens, this is rarely an issue here.
+
+**Truncation** — Cutting off text that exceeds the model's maximum input length. Text after the 512th token is simply discarded.
+
+**Type-token ratio (TTR)** — (Unique words) / (Total words). A ratio of 0.72 means 72% of all words used are unique — indicating rich vocabulary diversity.

@@ -9,6 +9,7 @@
 - [Comparison to Classical Baseline](#comparison-to-classical-baseline)
 - [What Phase 1 Establishes](#what-phase-1-establishes)
 - [Files in This Folder](#files-in-this-folder)
+- [Glossary](#glossary)
 
 ---
 
@@ -110,3 +111,59 @@ The +14 percentage point gain over TF-IDF confirms that contextual embeddings (D
 |---|---|
 | `Modelling_Phase01.ipynb` | Full notebook — data loading, training loop, evaluation, per-class analysis |
 | `Models/best_baseline_model.pt` | Best checkpoint by val Micro-F1 — gitignored, local only |
+
+---
+
+## Glossary
+
+**[CLS] token** — A special token added at the start of every input by BERT. After passing through all transformer layers, the [CLS] vector is used as a fixed-size summary of the whole sentence — the "sentence embedding". This vector is then fed into the classification head.
+
+**Accuracy** — Fraction of correctly classified examples out of total. For single-label problems: (correct predictions) / (total predictions). Simpler than F1 but misleading with imbalanced data.
+
+**Baseline** — A simple reference model used to judge whether a more complex model is actually better. Without a baseline, you can’t know if 0.70 F1 is good or bad.
+
+**BERT (Bidirectional Encoder Representations from Transformers)** — A large language model pre-trained on massive text corpora (Wikipedia, BookCorpus) using masked word prediction. It reads text in both directions simultaneously, producing rich contextual representations. Fine-tuning adds a task-specific head on top.
+
+**CosineAnnealingLR** — A learning rate scheduler that gradually decreases the learning rate following a cosine curve — fast at first, then slowing down, reaching near-zero at the end of training. Helps avoid overshooting the optimal weights.
+
+**CrossEntropyLoss** — The standard loss function for single-label multi-class classification. It penalises the model when it assigns low probability to the correct class. Mathematically: −log(p_correct_class).
+
+**DistilBERT** — A compressed (distilled) version of BERT with 6 layers instead of 12, trained to mimic BERT’s behaviour. 40% smaller, 60% faster, retains ~97% of BERT’s performance on most tasks (Sanh et al. 2019).
+
+**Dropout** — A regularisation technique that randomly sets a fraction of neuron outputs to zero during training. Prevents the model from memorising training data (overfitting). Dropout=0.2 means 20% of values are zeroed at each step.
+
+**Early stopping** — Stops training when performance on the validation set stops improving for N consecutive epochs (patience=N). Prevents overfitting and saves compute.
+
+**Embedding** — A dense numeric vector that represents a word, sentence, or label in a continuous space. Similar meanings are close together in this space. BERT produces contextual embeddings — the same word gets different vectors depending on its sentence context.
+
+**Epoch** — One complete pass through the entire training dataset. If you train for 10 epochs, the model sees every training example 10 times.
+
+**Fine-tuning** — Taking a pre-trained model (e.g., BERT trained on Wikipedia) and continuing to train it on your specific task with your labelled data. The pre-trained weights provide a good starting point; fine-tuning adapts them to the domain.
+
+**Hyperparameter** — A setting chosen before training begins that controls the learning process, not learned from data. Examples: learning rate, batch size, dropout rate, number of epochs.
+
+**Learning rate (LR)** — How large a step the model takes when updating its weights after each batch. Too high: training is unstable, overshoots. Too low: training is slow. Typical values for BERT fine-tuning: 1e-5 to 5e-5.
+
+**Linear layer** — A simple mathematical transformation: multiply input by a weight matrix, add a bias. Also called a fully-connected layer. Used as the classification head on top of BERT to produce class scores.
+
+**Logits** — Raw, unnormalised scores output by the model before any activation function (sigmoid or softmax). Can be any real number — positive or negative.
+
+**Majority-class baseline** — The simplest possible model: always predict the most frequent class. For geek_type, always predicting “War” gives ~29% accuracy. Any serious model must beat this.
+
+**Micro-F1** — A single F1 score computed across all classes by counting total true positives, false positives, and false negatives globally. Dominated by frequent classes. High Micro-F1 means the model does well overall, but may be terrible on rare classes.
+
+**Overfitting** — When a model learns the training data so well that it fails to generalise to new examples. Signs: training loss keeps dropping while validation loss starts rising.
+
+**Patience** — In early stopping: the number of epochs without improvement to tolerate before stopping training. Patience=3 means “stop if validation metric hasn’t improved for 3 consecutive epochs”.
+
+**Recall** — Of all the actual positives, how many did the model find? Recall = TP / (TP + FN). A model with high recall finds most positives but may also flag many negatives incorrectly.
+
+**Seed (random seed)** — A starting number that controls all randomness in the experiment (weight initialisation, data shuffling). Setting seed=42 makes results reproducible: anyone running the same code with the same seed gets the same result.
+
+**Softmax** — Converts a vector of raw logits into probabilities that sum to 1. Used for single-label classification to pick the most likely class.
+
+**Stratification** — Ensuring that each class is represented proportionally in train/val/test splits. Without it, a rare class might appear in training but not in test (or vice versa), making evaluation unreliable.
+
+**Transfer learning** — Using knowledge learned from one task (BERT pre-trained on Wikipedia) to improve performance on a different task (game type classification). The pre-trained model already “understands” language; you just teach it your specific classification task.
+
+**Transformer** — A neural network architecture based on self-attention mechanisms, enabling the model to weigh the importance of each word relative to every other word in a sequence. BERT, RoBERTa, and DistilBERT are all transformer models.
