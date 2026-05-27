@@ -1,0 +1,62 @@
+
+================================================================================
+PHASE 2: GEEK TYPE CLASSIFICATION - FINAL OPTIMIZATION REPORT
+================================================================================
+
+BASELINE (PHASE 1):
+  Model: DistilBERT (66.4M parameters)
+  Loss: Standard CrossEntropyLoss
+  Config: LR=2e-5, Batch=32, Epochs=10, Patience=3
+  Result: Test F1 = 0.7068
+
+OPTIMIZATION EXPERIMENTS:
+
+1. LOSS FUNCTION SEARCH
+   - Standard CrossEntropyLoss: 0.7068 F1
+   - Class-Weighted Loss: 0.7066 F1 (-0.14%)
+   - Focal Loss: 0.6981 F1 (-0.99%)
+   Best: StandardCE
+
+2. LEARNING RATE GRID SEARCH
+   Tested: ['1e-05', '2e-05', '3e-05', '5e-05']
+   Best LR: 3e-05 (F1 = 0.7048)
+   Improvement: -0.32%
+
+3. EXTENDED TRAINING
+   Config: LR=3e-05, Loss=StandardCE, Patience=5, MaxEpochs=20
+   Result: 0.6872 F1
+   Improvement: -2.08%
+
+4. ENSEMBLE (5 SEEDS)
+   Approach: Soft voting (average logits) from 5 models with different initializations
+   Seeds: [42, 123, 456, 789, 999]
+   Result: 0.7145 F1
+   Improvement: +0.65%
+
+FINAL BEST MODEL:
+  Method: Ensemble (5 Seeds)
+  Test F1: 0.7145
+  Test Accuracy: 0.7535
+  Total Improvement: +0.65% over baseline
+  Configuration: Soft voting (avg logits)
+
+SUMMARY:
+  Starting baseline (Phase 1): F1 = 0.7068
+  Final optimized model: F1 = 0.7145
+  Net improvement: +0.65%
+
+  This validates that systematic optimization with ensemble methods
+  achieves measurable gains on single-label geek type classification.
+
+MODEL ARTIFACTS SAVED:
+  - best_standardce_model.pt (best loss)
+  - best_lr_model.pt (best learning rate)
+  - best_extended_model.pt (extended training)
+  - best_ensemble_seed_*.pt (ensemble members)
+  - phase2_comprehensive_comparison.png (visualization)
+  - confusion_matrix_best_*.png (per-class analysis)
+
+NEXT STEPS:
+  Phase 3: Apply best configuration to mechanisms classification
+           (195 multi-label classes) for RQ2 evaluation
+================================================================================

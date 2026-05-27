@@ -33,8 +33,9 @@ Dataset/XML Dataset/bgg_clean_lemmatized.csv
 Dataset/XML Dataset/bgg_metadata_final.json
 Notebooks Tese/Dataset/
 
-# Logs
+# Logs (allow experiment results in Results/)
 *.log
+!Results/*.log
 logs/
 
 # OS files

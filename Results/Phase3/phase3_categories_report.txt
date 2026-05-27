@@ -1,0 +1,44 @@
+================================================================================
+PHASE 3: CATEGORY CLASSIFICATION - FINAL REPORT
+================================================================================
+
+TASK: Multi-Label Classification (85 categories)
+DATASET: 165,708 games, avg 2.74 labels/game
+
+RESULTS (Test Set):
+  Model                  Micro-F1   Macro-F1       LRAP    Hamming
+  ------------------------------------------------------------
+  TF-IDF BR                0.5712     0.3942     0.7515     0.0214
+  BERT-BR                  0.6781     0.5760     0.7923     0.0203
+
+THRESHOLD: 0.350 (optimized on validation set)
+
+PER-LABEL ANALYSIS:
+  Labels with F1 > 0.5: 59/85
+  Labels with F1 = 0.0: 1/85
+
+TOP 10 LABELS:
+  American Civil War             F1=0.9018  support=141
+  Expansion for Base-game        F1=0.8940  support=5031
+  World War II                   F1=0.8849  support=1090
+  Wargame                        F1=0.8757  support=3664
+  Napoleonic                     F1=0.8375  support=225
+  Trivia                         F1=0.8297  support=1191
+  Sports                         F1=0.8179  support=970
+  Trains                         F1=0.8083  support=275
+  Miniatures                     F1=0.8013  support=2427
+  Aviation / Flight              F1=0.7888  support=342
+
+BOTTOM 10 LABELS:
+  Mythology                      F1=0.4026  support=373
+  Civil War                      F1=0.3832  support=98
+  Renaissance                    F1=0.3670  support=141
+  Real-time                      F1=0.3429  support=513
+  Territory Building             F1=0.2240  support=425
+  Number                         F1=0.2079  support=265
+  Game System                    F1=0.1404  support=53
+  Arabian                        F1=0.0909  support=40
+  Korean War                     F1=0.0571  support=34
+  Third-party Expansion          F1=0.0000  support=6
+
+================================================================================

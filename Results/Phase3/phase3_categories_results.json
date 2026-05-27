@@ -1,0 +1,446 @@
+{
+  "tfidf": {
+    "micro_f1": 0.571198728019534,
+    "macro_f1": 0.3942185733363148,
+    "hamming": 0.021444071855720604,
+    "subset_acc": 0.19346662911855816,
+    "lrap": 0.7514949779623141
+  },
+  "bert_br": {
+    "micro_f1": 0.6781251409753237,
+    "macro_f1": 0.5759734097036264,
+    "hamming": 0.020261779733014018,
+    "subset_acc": 0.241340467473951,
+    "lrap": 0.7922846125118743,
+    "threshold": 0.35
+  },
+  "per_label_f1": [
+    {
+      "label": "American Civil War",
+      "f1": 0.9018181818181819,
+      "support": 141
+    },
+    {
+      "label": "Expansion for Base-game",
+      "f1": 0.8940448569218871,
+      "support": 5031
+    },
+    {
+      "label": "World War II",
+      "f1": 0.8849477035015917,
+      "support": 1090
+    },
+    {
+      "label": "Wargame",
+      "f1": 0.8757491010787055,
+      "support": 3664
+    },
+    {
+      "label": "Napoleonic",
+      "f1": 0.8375286041189931,
+      "support": 225
+    },
+    {
+      "label": "Trivia",
+      "f1": 0.8296795952782462,
+      "support": 1191
+    },
+    {
+      "label": "Sports",
+      "f1": 0.8179043743641913,
+      "support": 970
+    },
+    {
+      "label": "Trains",
+      "f1": 0.8083491461100569,
+      "support": 275
+    },
+    {
+      "label": "Miniatures",
+      "f1": 0.8013082583810303,
+      "support": 2427
+    },
+    {
+      "label": "Aviation / Flight",
+      "f1": 0.7887740029542097,
+      "support": 342
+    },
+    {
+      "label": "Zombies",
+      "f1": 0.7765726681127982,
+      "support": 236
+    },
+    {
+      "label": "Science Fiction",
+      "f1": 0.7763508601889992,
+      "support": 2028
+    },
+    {
+      "label": "Word Game",
+      "f1": 0.7681755829903978,
+      "support": 722
+    },
+    {
+      "label": "Vietnam War",
+      "f1": 0.7619047619047619,
+      "support": 53
+    },
+    {
+      "label": "Card Game",
+      "f1": 0.7605817234642934,
+      "support": 6561
+    },
+    {
+      "label": "Pirates",
+      "f1": 0.7253668763102725,
+      "support": 247
+    },
+    {
+      "label": "Abstract Strategy",
+      "f1": 0.7220299884659747,
+      "support": 1814
+    },
+    {
+      "label": "Murder / Mystery",
+      "f1": 0.7209876543209877,
+      "support": 407
+    },
+    {
+      "label": "Music",
+      "f1": 0.72,
+      "support": 158
+    },
+    {
+      "label": "Fantasy",
+      "f1": 0.7160369437447524,
+      "support": 2879
+    },
+    {
+      "label": "Nautical",
+      "f1": 0.7133396404919584,
+      "support": 532
+    },
+    {
+      "label": "Modern Warfare",
+      "f1": 0.6978102189781021,
+      "support": 350
+    },
+    {
+      "label": "Economic",
+      "f1": 0.6945831732616212,
+      "support": 1320
+    },
+    {
+      "label": "Religious",
+      "f1": 0.6881188118811881,
+      "support": 214
+    },
+    {
+      "label": "World War I",
+      "f1": 0.6815642458100558,
+      "support": 185
+    },
+    {
+      "label": "American Revolutionary War",
+      "f1": 0.6782608695652174,
+      "support": 59
+    },
+    {
+      "label": "Children's Game",
+      "f1": 0.667888074616922,
+      "support": 2908
+    },
+    {
+      "label": "American West",
+      "f1": 0.6617283950617284,
+      "support": 205
+    },
+    {
+      "label": "Ancient",
+      "f1": 0.6574172892209178,
+      "support": 493
+    },
+    {
+      "label": "Animals",
+      "f1": 0.6523040095751047,
+      "support": 1578
+    },
+    {
+      "label": "Book",
+      "f1": 0.6415601882985877,
+      "support": 764
+    },
+    {
+      "label": "Movies / TV / Radio theme",
+      "f1": 0.6381832178598922,
+      "support": 1315
+    },
+    {
+      "label": "Party Game",
+      "f1": 0.6362583931465617,
+      "support": 2212
+    },
+    {
+      "label": "Collectible Components",
+      "f1": 0.6353240152477764,
+      "support": 439
+    },
+    {
+      "label": "Action / Dexterity",
+      "f1": 0.6292981629769194,
+      "support": 1098
+    },
+    {
+      "label": "Comic Book / Strip",
+      "f1": 0.6180371352785146,
+      "support": 415
+    },
+    {
+      "label": "Horror",
+      "f1": 0.6176668914362778,
+      "support": 750
+    },
+    {
+      "label": "Racing",
+      "f1": 0.6095238095238096,
+      "support": 790
+    },
+    {
+      "label": "Space Exploration",
+      "f1": 0.5952380952380952,
+      "support": 334
+    },
+    {
+      "label": "Political",
+      "f1": 0.5908460471567267,
+      "support": 386
+    },
+    {
+      "label": "Negotiation",
+      "f1": 0.590134529147982,
+      "support": 588
+    },
+    {
+      "label": "Deduction",
+      "f1": 0.5891891891891892,
+      "support": 978
+    },
+    {
+      "label": "Farming",
+      "f1": 0.5888594164456233,
+      "support": 207
+    },
+    {
+      "label": "Prehistoric",
+      "f1": 0.5873015873015873,
+      "support": 132
+    },
+    {
+      "label": "American Indian Wars",
+      "f1": 0.5866666666666667,
+      "support": 44
+    },
+    {
+      "label": "Mafia",
+      "f1": 0.5826771653543307,
+      "support": 69
+    },
+    {
+      "label": "Medical",
+      "f1": 0.5786163522012578,
+      "support": 84
+    },
+    {
+      "label": "Pike and Shot",
+      "f1": 0.5655172413793104,
+      "support": 76
+    },
+    {
+      "label": "Educational",
+      "f1": 0.5602129075182968,
+      "support": 1532
+    },
+    {
+      "label": "Dice",
+      "f1": 0.5583230579531443,
+      "support": 2133
+    },
+    {
+      "label": "Novel-based",
+      "f1": 0.5561277033985582,
+      "support": 528
+    },
+    {
+      "label": "Adventure",
+      "f1": 0.5546425636811833,
+      "support": 1255
+    },
+    {
+      "label": "Medieval",
+      "f1": 0.5531370038412292,
+      "support": 835
+    },
+    {
+      "label": "Math",
+      "f1": 0.5448613376835236,
+      "support": 358
+    },
+    {
+      "label": "Transportation",
+      "f1": 0.5429553264604811,
+      "support": 311
+    },
+    {
+      "label": "Age of Reason",
+      "f1": 0.5308056872037915,
+      "support": 117
+    },
+    {
+      "label": "Fighting",
+      "f1": 0.5303030303030303,
+      "support": 1720
+    },
+    {
+      "label": "Mature / Adult",
+      "f1": 0.5142857142857142,
+      "support": 350
+    },
+    {
+      "label": "Memory",
+      "f1": 0.5009861932938856,
+      "support": 594
+    },
+    {
+      "label": "Civilization",
+      "f1": 0.49137931034482757,
+      "support": 255
+    },
+    {
+      "label": "Environmental",
+      "f1": 0.4899598393574297,
+      "support": 283
+    },
+    {
+      "label": "Video Game Theme",
+      "f1": 0.4785276073619632,
+      "support": 304
+    },
+    {
+      "label": "Fan Expansion",
+      "f1": 0.4722222222222222,
+      "support": 95
+    },
+    {
+      "label": "Puzzle",
+      "f1": 0.4710676446617767,
+      "support": 691
+    },
+    {
+      "label": "City Building",
+      "f1": 0.47096774193548385,
+      "support": 345
+    },
+    {
+      "label": "Travel",
+      "f1": 0.4699140401146132,
+      "support": 409
+    },
+    {
+      "label": "Spies / Secret Agents",
+      "f1": 0.4555984555984556,
+      "support": 154
+    },
+    {
+      "label": "Electronic",
+      "f1": 0.4533333333333333,
+      "support": 191
+    },
+    {
+      "label": "Bluffing",
+      "f1": 0.44868035190615835,
+      "support": 765
+    },
+    {
+      "label": "Maze",
+      "f1": 0.4298245614035088,
+      "support": 156
+    },
+    {
+      "label": "Industry / Manufacturing",
+      "f1": 0.42492917847025496,
+      "support": 221
+    },
+    {
+      "label": "Post-Napoleonic",
+      "f1": 0.42424242424242425,
+      "support": 163
+    },
+    {
+      "label": "Print & Play",
+      "f1": 0.42153975599495164,
+      "support": 1448
+    },
+    {
+      "label": "Exploration",
+      "f1": 0.4155844155844156,
+      "support": 754
+    },
+    {
+      "label": "Humor",
+      "f1": 0.4153414405986904,
+      "support": 1174
+    },
+    {
+      "label": "Mythology",
+      "f1": 0.4025764895330113,
+      "support": 373
+    },
+    {
+      "label": "Civil War",
+      "f1": 0.38323353293413176,
+      "support": 98
+    },
+    {
+      "label": "Renaissance",
+      "f1": 0.3669724770642202,
+      "support": 141
+    },
+    {
+      "label": "Real-time",
+      "f1": 0.34285714285714286,
+      "support": 513
+    },
+    {
+      "label": "Territory Building",
+      "f1": 0.224,
+      "support": 425
+    },
+    {
+      "label": "Number",
+      "f1": 0.2079207920792079,
+      "support": 265
+    },
+    {
+      "label": "Game System",
+      "f1": 0.14035087719298245,
+      "support": 53
+    },
+    {
+      "label": "Arabian",
+      "f1": 0.09090909090909091,
+      "support": 40
+    },
+    {
+      "label": "Korean War",
+      "f1": 0.05714285714285714,
+      "support": 34
+    },
+    {
+      "label": "Third-party Expansion",
+      "f1": 0.0,
+      "support": 6
+    }
+  ],
+  "num_labels": 85,
+  "dataset_size": 165708
+}

@@ -60,13 +60,15 @@ class BERTClassifier(nn.Module):
         return self.classifier(pooled)
 
 print("[1/5] Loading dataset...")
-df = pd.read_csv("./Dataset/XML Dataset/bgg_clean_lemmatized.csv")
+df = pd.read_parquet("./Dataset/XML Dataset/bgg_geektype_subset.parquet")
 print(f"Loaded {len(df)} samples\n")
 
 print("[2/5] Preparing labels...")
-def parse_geek_type(geek_str):
+def parse_geek_type(val):
     try:
-        geek_list = ast.literal_eval(geek_str)
+        if isinstance(val, list):
+            return val[0] if len(val) > 0 else 'Unknown'
+        geek_list = ast.literal_eval(val)
         return geek_list[0] if isinstance(geek_list, list) and len(geek_list) > 0 else 'Unknown'
     except:
         return 'Unknown'

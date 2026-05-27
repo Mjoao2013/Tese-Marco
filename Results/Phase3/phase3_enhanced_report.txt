@@ -1,0 +1,75 @@
+================================================================================
+PHASE 3 ENHANCED: CATEGORY CLASSIFICATION - FINAL REPORT
+================================================================================
+
+MODEL: bert-base-uncased (Binary Relevance)
+FIXES APPLIED (over phase3_optimized):
+  FIX 1: pos_weight capped at 10.0 (was 2922.6 — destroyed calibration)
+  FIX 2: Early stopping on Val Loss (was Micro-F1 — allowed overfit for 15 epochs)
+  FIX 3: Label smoothing = 0.1 (prevents hard 0/1 target overconfidence)
+  FIX 4: Dropout = 0.3 (was 0.2 — insufficient for 110M param model)
+
+DATASET: 165,708 games  |  85 categories  |  avg 2.74 labels/game
+SPLITS:  Train=116,943  Val=24,508  Test=24,257
+STRATIFICATION: max label freq diff = 0.0090
+
+RESULTS (Test Set):
+  Model                                 Micro-F1   Macro-F1       LRAP    Hamming
+  ---------------------------------------------------------------------------
+  TF-IDF BR                               0.5693     0.3904     0.7557     0.0219
+  Phase 3 Baseline (DistilBERT)           0.6781     0.5760     0.7923     0.0203
+  Phase 3 Opt (BERT-base, broken)         0.6484     0.5895     0.7709     0.0278
+  BERT-BR Enhanced (global)               0.6739     0.5999     0.7769     0.0241
+  BERT-BR Enhanced (per-label)            0.6736     0.6046     0.7769     0.0244
+
+THRESHOLDS:
+  Global optimal:  0.675
+  Per-label range: [0.425, 0.675]  mean=0.662
+
+PER-LABEL ANALYSIS (per-label threshold):
+  Labels with F1 > 0.5: 65/85
+  Labels with F1 = 0.0: 0/85
+  RQ3 Spearman r(F1, support) = 0.265  (p=0.0141)
+
+TOP 10 LABELS:
+  Expansion for Base-game             F1=0.9032  support=5036  thresh=0.675
+  World War II                        F1=0.8879  support=1118  thresh=0.675
+  Wargame                             F1=0.8783  support=3734  thresh=0.675
+  American Civil War                  F1=0.8497  support=147  thresh=0.675
+  Trains                              F1=0.8304  support=271  thresh=0.675
+  Napoleonic                          F1=0.8286  support=235  thresh=0.675
+  Miniatures                          F1=0.8187  support=2479  thresh=0.675
+  Sports                              F1=0.8077  support=988  thresh=0.675
+  Trivia                              F1=0.7940  support=1213  thresh=0.675
+  Aviation / Flight                   F1=0.7871  support=373  thresh=0.675
+
+BOTTOM 10 LABELS:
+  Humor                               F1=0.4466  support=1203  thresh=0.675
+  Memory                              F1=0.4425  support=628  thresh=0.675
+  Exploration                         F1=0.4368  support=801  thresh=0.650
+  Real-time                           F1=0.3949  support=519  thresh=0.675
+  Renaissance                         F1=0.3622  support=152  thresh=0.675
+  Arabian                             F1=0.3462  support=36  thresh=0.575
+  Territory Building                  F1=0.3139  support=391  thresh=0.625
+  Number                              F1=0.3091  support=262  thresh=0.675
+  Third-party Expansion               F1=0.1111  support=8  thresh=0.425
+  Game System                         F1=0.0978  support=46  thresh=0.425
+
+TRAINING HISTORY:
+  Epoch  1: TrainLoss=1.0626  ValLoss=0.5744  MicroF1=0.3722  MacroF1=0.3163
+  Epoch  2: TrainLoss=1.0100  ValLoss=0.5464  MicroF1=0.4397  MacroF1=0.3763
+  Epoch  3: TrainLoss=0.9944  ValLoss=0.5328  MicroF1=0.4777  MacroF1=0.4102
+  Epoch  4: TrainLoss=0.9845  ValLoss=0.5281  MicroF1=0.4934  MacroF1=0.4308
+  Epoch  5: TrainLoss=0.9764  ValLoss=0.5218  MicroF1=0.5131  MacroF1=0.4515
+  Epoch  6: TrainLoss=0.9697  ValLoss=0.5196  MicroF1=0.5277  MacroF1=0.4619
+  Epoch  7: TrainLoss=0.9637  ValLoss=0.5193  MicroF1=0.5318  MacroF1=0.4695
+  Epoch  8: TrainLoss=0.9585  ValLoss=0.5180  MicroF1=0.5530  MacroF1=0.4838
+  Epoch  9: TrainLoss=0.9539  ValLoss=0.5176  MicroF1=0.5536  MacroF1=0.4854
+  Epoch 10: TrainLoss=0.9500  ValLoss=0.5176  MicroF1=0.5595  MacroF1=0.4890
+  Epoch 11: TrainLoss=0.9466  ValLoss=0.5173  MicroF1=0.5714  MacroF1=0.4976
+  Epoch 12: TrainLoss=0.9438  ValLoss=0.5177  MicroF1=0.5758  MacroF1=0.5055
+  Epoch 13: TrainLoss=0.9416  ValLoss=0.5171  MicroF1=0.5829  MacroF1=0.5091
+  Epoch 14: TrainLoss=0.9398  ValLoss=0.5172  MicroF1=0.5862  MacroF1=0.5107
+  Epoch 15: TrainLoss=0.9386  ValLoss=0.5172  MicroF1=0.5892  MacroF1=0.5125
+
+================================================================================

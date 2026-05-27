@@ -1,0 +1,19 @@
+[14:37:35] Setup & Data Loading started
+[14:37:37] EXP 1/9 - Baseline training started
+[14:45:24] EXP 2/9 - Enhanced Model training started
+[14:54:57] EXP 3/9 - Weighted Loss training started
+[15:04:29] EXP 3/9 - Checkpoint saving...
+[15:04:30] EXP 4/9 - Focal Loss training started
+[15:14:28] EXP 4/9 - Loss comparison done, selecting best
+[15:14:28] EXP 5/9 - LR Grid Search started
+[15:52:38] EXP 6/9 - Extended Training started
+[16:05:54] EXP 7/9 - Ensemble (5 seeds) started
+[17:02:12] EXP 8/9 - Final Results Summary started
+[17:02:13] EXP 8/9 - Generating comparison plots
+[17:02:14] EXP 8/9 - Per-class analysis started
+[17:02:14] EXP 8/9 - Writing final report
+[17:02:14] EXP 9/9 - Statistical Validation started
+[17:02:14] EXP 9/9 - McNemar test running
+[17:02:14] EXP 9/9 - Bootstrap CI running
+[17:02:18] EXP 9/9 - Per-seed stats running
+[17:02:42] ALL DONE - Final thesis summary

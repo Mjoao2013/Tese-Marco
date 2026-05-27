@@ -1,0 +1,38 @@
+[17:19:32] Device: cuda
+[17:19:32]   GPU: NVIDIA A100 80GB PCIe
+[17:19:32]   Memory: 79.1 GB
+[17:19:32] SECTION 0: Data Loading started
+[17:19:33] Raw dataset: (165709, 4)
+[17:19:33] Empty descriptions: 1 (dropping)
+[17:19:33] Clean dataset: (165708, 4)
+[17:19:33] SECTION 1: Multi-Label Encoding & Splitting started
+[17:19:34] Multi-hot matrix: (165708, 85)
+[17:19:34] Num labels: 85
+[17:19:34] Avg labels/game: 2.74
+[17:19:34] WARNING: skmultilearn not available, falling back to sklearn split
+[17:19:34] Train: 115,995  Val: 24,856  Test: 24,857
+[17:19:34] SECTION 2: TF-IDF Binary Relevance Baseline started
+[17:20:23] TF-IDF Test Micro-F1: 0.5712  Macro-F1: 0.3942
+[17:20:24] SECTION 3: BERT DataLoaders & Model setup started
+[17:20:25] DataLoaders: train=3625 val=777 test=777 batches
+[17:20:29] Model: DistilBERT Multi-Label | 67,018,837 params | 85 labels
+[17:20:29] SECTION 4: Training started
+[17:30:05] Epoch  1/10 | TrainLoss=0.0943 ValLoss=0.0672 | MicroF1=0.5549 MacroF1=0.2447  -> BEST
+[17:39:29] Epoch  2/10 | TrainLoss=0.0631 ValLoss=0.0606 | MicroF1=0.6237 MacroF1=0.3861  -> BEST
+[17:48:55] Epoch  3/10 | TrainLoss=0.0558 ValLoss=0.0580 | MicroF1=0.6424 MacroF1=0.4539  -> BEST
+[17:58:20] Epoch  4/10 | TrainLoss=0.0505 ValLoss=0.0569 | MicroF1=0.6599 MacroF1=0.4890  -> BEST
+[18:07:45] Epoch  5/10 | TrainLoss=0.0461 ValLoss=0.0567 | MicroF1=0.6672 MacroF1=0.5299  -> BEST
+[18:17:12] Epoch  6/10 | TrainLoss=0.0424 ValLoss=0.0573 | MicroF1=0.6703 MacroF1=0.5367  -> BEST
+[18:26:36] Epoch  7/10 | TrainLoss=0.0393 ValLoss=0.0581 | MicroF1=0.6696 MacroF1=0.5346  (1/3)
+[18:36:01] Epoch  8/10 | TrainLoss=0.0371 ValLoss=0.0584 | MicroF1=0.6715 MacroF1=0.5470  -> BEST
+[18:45:26] Epoch  9/10 | TrainLoss=0.0357 ValLoss=0.0588 | MicroF1=0.6717 MacroF1=0.5449  -> BEST
+[18:54:50] Epoch 10/10 | TrainLoss=0.0348 ValLoss=0.0591 | MicroF1=0.6720 MacroF1=0.5450  -> BEST
+[18:54:52] Training done. Best Val Micro-F1: 0.6720
+[18:54:52] SECTION 5: Threshold Optimization started
+[18:55:32] Optimal threshold: 0.350  (Val Micro-F1=0.6789)
+[18:55:32] SECTION 6: Final Test Evaluation started
+[18:56:13] BERT-BR Test | Micro-F1=0.6781 Macro-F1=0.5760 LRAP=0.7923 Hamming=0.0203
+[18:56:13] Per-label: F1>0.5=59/85  F1=0=1/85
+[18:56:13] Writing final report...
+[18:56:13] Phase 3 COMPLETE
+[18:56:13] Report saved to: /cfs/home/u037341/tese/Tese-Marco/Notebooks Tese/phase3_categories_report.txt

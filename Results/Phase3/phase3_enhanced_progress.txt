@@ -1,0 +1,45 @@
+[12:54:36] Device: cuda
+[12:54:36]   GPU: NVIDIA A100 80GB PCIe
+[12:54:36]   Memory: 79.1 GB
+[12:54:36] SECTION 0: Data Loading started
+[12:54:44] Clean dataset: (165708, 4)
+[12:54:44] SECTION 1: Multi-Label Encoding & Stratified Splitting started
+[12:54:45] Labels: 85  |  Avg/game: 2.74
+[12:55:31] Train: 116,943  Val: 24,508  Test: 24,257
+[12:55:32] Stratification check — max label freq diff: 0.0090 (PASSED (<0.02))
+[12:55:32] SECTION 2: TF-IDF Binary Relevance Baseline started
+[12:56:18] TF-IDF | Micro-F1=0.5693  Macro-F1=0.3904
+[12:56:18] SECTION 3: bert-base-uncased DataLoaders & Model setup started
+[12:56:20] DataLoaders: train=3655 val=766 test=759 batches
+[12:56:56] Model: bert-base-uncased | 110,138,197 params | dropout=0.3
+[12:56:56] SECTION 4: Training with capped weighted BCE + label smoothing started
+[12:56:58] pos_weight range (capped at 10.0): [2.76, 10.00]
+[12:56:58] Scheduler: linear warmup (5482 steps) → linear decay (54825 total)
+[13:36:09] Epoch  1/15 | TrainLoss=1.0626 ValLoss=0.5744 | MicroF1=0.3722 MacroF1=0.3163  -> BEST (val loss)
+[14:15:05] Epoch  2/15 | TrainLoss=1.0100 ValLoss=0.5464 | MicroF1=0.4397 MacroF1=0.3763  -> BEST (val loss)
+[14:53:00] Epoch  3/15 | TrainLoss=0.9944 ValLoss=0.5328 | MicroF1=0.4777 MacroF1=0.4102  -> BEST (val loss)
+[15:31:57] Epoch  4/15 | TrainLoss=0.9845 ValLoss=0.5281 | MicroF1=0.4934 MacroF1=0.4308  -> BEST (val loss)
+[16:10:35] Epoch  5/15 | TrainLoss=0.9764 ValLoss=0.5218 | MicroF1=0.5131 MacroF1=0.4515  -> BEST (val loss)
+[16:49:40] Epoch  6/15 | TrainLoss=0.9697 ValLoss=0.5196 | MicroF1=0.5277 MacroF1=0.4619  -> BEST (val loss)
+[17:28:42] Epoch  7/15 | TrainLoss=0.9637 ValLoss=0.5193 | MicroF1=0.5318 MacroF1=0.4695  -> BEST (val loss)
+[18:07:48] Epoch  8/15 | TrainLoss=0.9585 ValLoss=0.5180 | MicroF1=0.5530 MacroF1=0.4838  -> BEST (val loss)
+[18:46:56] Epoch  9/15 | TrainLoss=0.9539 ValLoss=0.5176 | MicroF1=0.5536 MacroF1=0.4854  -> BEST (val loss)
+[19:25:59] Epoch 10/15 | TrainLoss=0.9500 ValLoss=0.5176 | MicroF1=0.5595 MacroF1=0.4890  -> BEST (val loss)
+[20:21:31] Epoch 11/15 | TrainLoss=0.9466 ValLoss=0.5173 | MicroF1=0.5714 MacroF1=0.4976  -> BEST (val loss)
+[21:00:42] Epoch 12/15 | TrainLoss=0.9438 ValLoss=0.5177 | MicroF1=0.5758 MacroF1=0.5055  (1/5)
+[21:39:53] Epoch 13/15 | TrainLoss=0.9416 ValLoss=0.5171 | MicroF1=0.5829 MacroF1=0.5091  -> BEST (val loss)
+[22:19:03] Epoch 14/15 | TrainLoss=0.9398 ValLoss=0.5172 | MicroF1=0.5862 MacroF1=0.5107  (1/5)
+[22:58:02] Epoch 15/15 | TrainLoss=0.9386 ValLoss=0.5172 | MicroF1=0.5892 MacroF1=0.5125  (2/5)
+[22:58:02] Training done. Best Val Loss: 0.5171
+[22:58:03] SECTION 5: Per-Label Threshold Optimization started
+[23:00:38] Global threshold: 0.675  (Val Micro-F1=0.6735)
+[23:00:44] Per-label thresh range: [0.425, 0.675]  mean=0.662
+[23:00:45] Per-label thresh → Val Micro-F1=0.6735  Macro-F1=0.6053
+[23:00:45] SECTION 6: Final Test Evaluation started
+[23:03:22] BERT-BR Enhanced (global thresh=0.675) | Micro=0.6739  Macro=0.5999  LRAP=0.7769
+[23:03:22] BERT-BR Enhanced (per-label thresh) | Micro=0.6736  Macro=0.6046  LRAP=0.7769
+[23:03:22] Per-label: F1>0.5=65/85  F1=0=0/85
+[23:03:22] RQ3 Spearman r(F1, support)=0.265  p=0.0141
+[23:03:22] Writing final report...
+[23:03:22] Phase 3 ENHANCED COMPLETE
+[23:03:22] Report: /cfs/home/u037341/tese/Tese-Marco/Notebooks Tese/phase3_enhanced_report.txt
