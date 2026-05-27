@@ -31,7 +31,7 @@ build/
 Dataset/XML Dataset/xml_raw/
 Dataset/XML Dataset/bgg_clean_lemmatized.csv
 Dataset/XML Dataset/bgg_metadata_final.json
-Notebooks Tese/Dataset/
+Notebooks Tese/
 
 # Logs (allow experiment results in Results/)
 *.log
