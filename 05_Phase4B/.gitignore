@@ -1,0 +1,6 @@
+*.pt
+*.npy
+__pycache__/
+*.pyc
+*_run.log
+train.pid
