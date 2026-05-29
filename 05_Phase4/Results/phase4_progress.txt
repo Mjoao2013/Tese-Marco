@@ -1,0 +1,55 @@
+[18:07:22] Device: cuda
+[18:07:22]   GPU: NVIDIA A100 80GB PCIe
+[18:07:22]   Memory: 79.3 GB
+[18:07:22] SECTION 0: Data Loading
+[18:07:23] Clean dataset: (165708, 4)
+[18:07:23] SECTION 1: Multi-Label Encoding & Stratified Split
+[18:07:24] Labels: 85  |  Avg/game: 2.74
+[18:08:45] Train: 116,943  Val: 24,508  Test: 24,257
+[18:08:45] Stratification check — max label freq diff: 0.0090 (PASSED)
+[18:08:45] SECTION 2: TF-IDF Binary Relevance Baseline
+[18:10:03] TF-IDF | Micro-F1=0.5693  Macro-F1=0.3904
+[18:10:04] SECTION 3: Building MLGN components
+[18:10:04]   3a. Building label co-occurrence graph
+[18:10:04]   Co-occurrence graph: 1900 edges, avg degree 22.4 (excl. self-loops)
+[18:10:04]   Top-5 neighbors of 'Card Game': ['Collectible Components', 'Humor', 'Game System', 'Bluffing', 'Mature / Adult']
+[18:10:05]   3b. Encoding label names with BERT to initialise label embeddings
+[18:10:12]   Label embeddings initialised: torch.Size([85, 768])
+[18:10:12] SECTION 4: DataLoaders setup
+[18:10:12] DataLoaders: train=3655 val=766 test=759 batches
+[18:10:12] SECTION 5: MLGN Model definition
+[18:10:12] MLGN | Total params: 111,911,509  |  Trainable: 111,911,509
+[18:10:12] SECTION 6: Training MLGN
+[18:10:13] pos_weight range (capped at 10.0): [2.76, 10.00]
+[18:10:13] Scheduler: warmup=5482 steps  |  total=54825 steps
+[18:10:13] Contrastive λ=0.1  temperature=0.07
+[18:29:34] Epoch  1/15 | BCE=1.1746  Con=3.2192 (ratio=2.74)  Total=1.4965 | ValLoss=0.6834 | MicroF1=0.2222  MacroF1=0.1726  -> BEST
+[18:48:52] Epoch  2/15 | BCE=1.0760  Con=2.9542 (ratio=2.75)  Total=1.3714 | ValLoss=0.6669 | MicroF1=0.2279  MacroF1=0.1782  -> BEST
+[19:08:10] Epoch  3/15 | BCE=1.0581  Con=2.8708 (ratio=2.71)  Total=1.3452 | ValLoss=0.6039 | MicroF1=0.3130  MacroF1=0.2325  -> BEST
+[19:27:28] Epoch  4/15 | BCE=1.0463  Con=2.8082 (ratio=2.68)  Total=1.3271 | ValLoss=0.6121 | MicroF1=0.2921  MacroF1=0.2177  (1/5)
+[19:46:44] Epoch  5/15 | BCE=1.0375  Con=2.7566 (ratio=2.66)  Total=1.3132 | ValLoss=0.6265 | MicroF1=0.2682  MacroF1=0.2015  (2/5)
+[20:06:02] Epoch  6/15 | BCE=1.0305  Con=2.7028 (ratio=2.62)  Total=1.3008 | ValLoss=0.5912 | MicroF1=0.3135  MacroF1=0.2409  -> BEST
+[20:25:19] Epoch  7/15 | BCE=1.0249  Con=2.6614 (ratio=2.60)  Total=1.2911 | ValLoss=0.5767 | MicroF1=0.3328  MacroF1=0.2508  -> BEST
+[20:44:37] Epoch  8/15 | BCE=1.0201  Con=2.6176 (ratio=2.57)  Total=1.2819 | ValLoss=0.5997 | MicroF1=0.2996  MacroF1=0.2292  (1/5)
+[21:03:56] Epoch  9/15 | BCE=1.0159  Con=2.5813 (ratio=2.54)  Total=1.2740 | ValLoss=0.5756 | MicroF1=0.3363  MacroF1=0.2532  -> BEST
+[21:23:13] Epoch 10/15 | BCE=1.0123  Con=2.5416 (ratio=2.51)  Total=1.2664 | ValLoss=0.5740 | MicroF1=0.3435  MacroF1=0.2570  -> BEST
+[21:42:31] Epoch 11/15 | BCE=1.0093  Con=2.5154 (ratio=2.49)  Total=1.2608 | ValLoss=0.5711 | MicroF1=0.3380  MacroF1=0.2568  -> BEST
+[22:01:50] Epoch 12/15 | BCE=1.0066  Con=2.4915 (ratio=2.48)  Total=1.2558 | ValLoss=0.5658 | MicroF1=0.3469  MacroF1=0.2608  -> BEST
+[22:21:09] Epoch 13/15 | BCE=1.0044  Con=2.4707 (ratio=2.46)  Total=1.2515 | ValLoss=0.5955 | MicroF1=0.3080  MacroF1=0.2364  (1/5)
+[22:40:28] Epoch 14/15 | BCE=1.0026  Con=2.4544 (ratio=2.45)  Total=1.2480 | ValLoss=0.5763 | MicroF1=0.3332  MacroF1=0.2537  (2/5)
+[22:59:59] Epoch 15/15 | BCE=1.0012  Con=2.4426 (ratio=2.44)  Total=1.2455 | ValLoss=0.5718 | MicroF1=0.3411  MacroF1=0.2596  (3/5)
+[22:59:59] Training done. Best Val Loss: 0.5658
+[23:00:00] SECTION 7: Per-Label Threshold Optimisation
+[23:01:23] Global threshold: 0.750  (Val Micro-F1=0.5956)
+[23:01:38] Per-label thresh range: [0.500, 0.875]  mean=0.726
+[23:01:38] SECTION 8: Final Test Evaluation
+[23:03:03] MLGN (global thresh=0.750) | Micro=0.5960  Macro=0.4141  LRAP=0.7063
+[23:03:03] MLGN (per-label thresh) | Micro=0.6103  Macro=0.4628  LRAP=0.7063
+[23:03:03] vs Phase 3 Enhanced baseline: ΔMicro=-0.0633  ΔMacro=-0.1418  ΔLRAP=-0.0706
+[23:03:04] Per-label: F1>0.5=40/85  F1=0=2/85
+[23:03:04] RQ3 Spearman r(F1, support)=0.655  p=0.0000
+[23:03:04] SECTION 9: Statistical Significance (McNemar Test)
+[23:03:04]   Reminder: save test_preds_perlabel for McNemar comparison with Phase 3 Enhanced
+[23:03:04]   Saved: mlgn_test_preds_perlabel.npy, mlgn_test_probs.npy, mlgn_test_labels.npy
+[23:03:04] SECTION 10: Writing report and results JSON
+[23:03:04] Phase 4 MLGN COMPLETE

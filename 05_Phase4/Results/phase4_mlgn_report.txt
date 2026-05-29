@@ -1,0 +1,84 @@
+================================================================================
+PHASE 4: MLGN — CATEGORY CLASSIFICATION REPORT
+================================================================================
+
+MODEL: MLGN (BERT-base + GCN + Contrastive Loss)
+Reference: Liu et al. 2023 [12]
+
+MLGN CONFIG:
+  GCN layers:         2
+  GCN hidden dim:     768
+  Cooc top-k:         50
+  Cooc min-count:     5
+  Contrastive temp:   0.07
+  Contrastive lambda: 0.1
+
+BERT CONFIG (same as Phase 3 Enhanced):
+  Model:       bert-base-uncased
+  LR:          2e-05
+  Batch size:  32
+  Max len:     256
+  Dropout:     0.3
+  pos_weight_cap: 10.0
+  Label smooth:   0.1
+
+RESULTS (Test Set):
+  Model                                      Micro-F1   Macro-F1       LRAP    Hamming
+  --------------------------------------------------------------------------------
+  TF-IDF BR                                    0.5693     0.3904     0.7557     0.0219
+  Phase 3 Enhanced (BERT-BR, per-label)        0.6736     0.6046     0.7769     0.0244
+  MLGN (global thresh)                         0.5960     0.4141     0.7063     0.0265
+  MLGN (per-label thresh)                      0.6103     0.4628     0.7063     0.0272
+
+DELTA vs Phase 3 Enhanced (per-label):
+  ΔMicro-F1 = -0.0633
+  ΔMacro-F1 = -0.1418
+  ΔLRAP     = -0.0706
+
+PER-LABEL ANALYSIS:
+  Labels with F1 > 0.5: 40/85
+  Labels with F1 = 0.0: 2/85
+  Spearman r(F1, support) = 0.655  (p=0.0000)
+
+TOP 10 LABELS:
+  Wargame                                  F1=0.8662  support=3734
+  Expansion for Base-game                  F1=0.8568  support=5036
+  Sports                                   F1=0.8141  support=988
+  World War II                             F1=0.8059  support=1118
+  Trivia                                   F1=0.8008  support=1213
+  Science Fiction                          F1=0.7734  support=1957
+  Card Game                                F1=0.7584  support=6657
+  Word Game                                F1=0.7530  support=686
+  Miniatures                               F1=0.7292  support=2479
+  Abstract Strategy                        F1=0.7290  support=1748
+
+BOTTOM 10 LABELS:
+  Electronic                               F1=0.2092  support=173
+  Renaissance                              F1=0.2077  support=152
+  World War I                              F1=0.1965  support=196
+  Korean War                               F1=0.1961  support=25
+  Mafia                                    F1=0.1868  support=80
+  Video Game Theme                         F1=0.1739  support=327
+  Medical                                  F1=0.1667  support=76
+  Third-party Expansion                    F1=0.0316  support=8
+  Arabian                                  F1=0.0000  support=36
+  Game System                              F1=0.0000  support=46
+
+TRAINING HISTORY:
+  Epoch  1: TrainLoss=1.4965 (BCE=1.1746 Con=3.2192)  ValLoss=0.6834  MicroF1=0.2222  MacroF1=0.1726
+  Epoch  2: TrainLoss=1.3714 (BCE=1.0760 Con=2.9542)  ValLoss=0.6669  MicroF1=0.2279  MacroF1=0.1782
+  Epoch  3: TrainLoss=1.3452 (BCE=1.0581 Con=2.8708)  ValLoss=0.6039  MicroF1=0.3130  MacroF1=0.2325
+  Epoch  4: TrainLoss=1.3271 (BCE=1.0463 Con=2.8082)  ValLoss=0.6121  MicroF1=0.2921  MacroF1=0.2177
+  Epoch  5: TrainLoss=1.3132 (BCE=1.0375 Con=2.7566)  ValLoss=0.6265  MicroF1=0.2682  MacroF1=0.2015
+  Epoch  6: TrainLoss=1.3008 (BCE=1.0305 Con=2.7028)  ValLoss=0.5912  MicroF1=0.3135  MacroF1=0.2409
+  Epoch  7: TrainLoss=1.2911 (BCE=1.0249 Con=2.6614)  ValLoss=0.5767  MicroF1=0.3328  MacroF1=0.2508
+  Epoch  8: TrainLoss=1.2819 (BCE=1.0201 Con=2.6176)  ValLoss=0.5997  MicroF1=0.2996  MacroF1=0.2292
+  Epoch  9: TrainLoss=1.2740 (BCE=1.0159 Con=2.5813)  ValLoss=0.5756  MicroF1=0.3363  MacroF1=0.2532
+  Epoch 10: TrainLoss=1.2664 (BCE=1.0123 Con=2.5416)  ValLoss=0.5740  MicroF1=0.3435  MacroF1=0.2570
+  Epoch 11: TrainLoss=1.2608 (BCE=1.0093 Con=2.5154)  ValLoss=0.5711  MicroF1=0.3380  MacroF1=0.2568
+  Epoch 12: TrainLoss=1.2558 (BCE=1.0066 Con=2.4915)  ValLoss=0.5658  MicroF1=0.3469  MacroF1=0.2608
+  Epoch 13: TrainLoss=1.2515 (BCE=1.0044 Con=2.4707)  ValLoss=0.5955  MicroF1=0.3080  MacroF1=0.2364
+  Epoch 14: TrainLoss=1.2480 (BCE=1.0026 Con=2.4544)  ValLoss=0.5763  MicroF1=0.3332  MacroF1=0.2537
+  Epoch 15: TrainLoss=1.2455 (BCE=1.0012 Con=2.4426)  ValLoss=0.5718  MicroF1=0.3411  MacroF1=0.2596
+
+================================================================================
