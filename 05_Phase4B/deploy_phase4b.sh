@@ -19,8 +19,9 @@ echo "Script: $SCRIPT"
 echo ""
 
 cd "$REPO_DIR"
-git pull origin main
-echo "[git] Up to date"
+git fetch origin main
+git checkout FETCH_HEAD -- 05_Phase4B/
+echo "[git] 05_Phase4B/ updated from origin/main"
 
 VENV_DIR="$REPO_DIR/venv_phase3"
 if [ -d "$VENV_DIR/bin" ]; then
