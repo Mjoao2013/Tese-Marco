@@ -23,16 +23,14 @@ git fetch origin main
 git checkout FETCH_HEAD -- 05_Phase4B/
 echo "[git] 05_Phase4B/ updated from origin/main"
 
-VENV_DIR="$REPO_DIR/venv_phase3"
+VENV_DIR="/cfs/home/u037341/tese/venv_phase4"
 if [ -d "$VENV_DIR/bin" ]; then
     source "$VENV_DIR/bin/activate"
     echo "[venv] Activated: $VENV_DIR"
 else
-    echo "[venv] Creating new venv..."
-    python3 -m venv "$VENV_DIR"
-    source "$VENV_DIR/bin/activate"
-    pip install --upgrade pip --quiet
-    pip install -q torch transformers pandas scikit-learn numpy scipy skmultilearn
+    echo "ERROR: venv_phase4 not found at $VENV_DIR"
+    echo "Expected the Phase 4 venv with PyTorch/CUDA already installed."
+    exit 1
 fi
 
 python3 -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA: {torch.cuda.is_available()}'); print(f'GPU: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else None}')"
